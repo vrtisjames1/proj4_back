@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-_z7xt=+7&rj-#8zhj=^(7o)1v!a!%5^qdxjn=7vcvkdfudtsp%
 DEBUG = True
 
 # added for heroku deployment
-ALLOWED_HOSTS = ['localhost', 'git.heroku.com/connect4back.git']
+ALLOWED_HOSTS = ['localhost', 'connect4back.herokuapp.com']
 
 
 # Application definition
