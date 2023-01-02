@@ -3,11 +3,10 @@ from django.db import models
 # Create your models here.
 class Connect4(models.Model):
     game_name = models.CharField(max_length=45)
+    winner = models.BooleanField(default=False)
     username1 = models.CharField(max_length=32)
-    user1_choice = models.IntegerField(default=1)
     user1_turn = models.BooleanField(default=True)
     username2 = models.CharField(max_length=32)
-    user2_choice = models.IntegerField(default=2)
     user2_turn = models.BooleanField(default=False)
     a1 = models.IntegerField(default=0)
     a2 = models.IntegerField(default=0)
