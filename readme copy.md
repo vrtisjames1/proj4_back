@@ -1,3 +1,7 @@
+
+# Username: admin
+# Password: admin
+
 ## START UP
 new directory tab: 
 source ~/ga-env/bin/activate
