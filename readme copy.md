@@ -290,13 +290,19 @@ Search for Heroku Postgres and add it
 git add -A
 git commit -m "heroku deployment"
 git push heroku master
-Once it builds successfully, run heroku run bash
-While in heroku bash, apply the migrations to the heroku project by running: python manage.py migrate
-Still in heroku bash, create a superuser for the heroku project by running python manage.py createsuperuser and follow the prompts
-To exit heroku bash, run exit
+### Once it builds successfully, run heroku run bash
+### While in heroku bash, apply the migrations to the heroku project by running: 
+python manage.py migrate
+### Still in heroku bash, create a superuser for the heroku project by running 
+python manage.py createsuperuser 
+### and follow the prompts
+### To exit heroku bash, run:
+ exit
+
 In Browser
-After the migrations finish, you should now be able to open the heroku app in your browser to see the Django REST interface!
-Don't forget to go to /api/contacts
+
+### After the migrations finish, you should now be able to open the heroku app in your browser to see the Django REST interface!
+### Don't forget to go to /api/contacts
 Remember that your heroku database is separate from your local database, so there should not be any data on the first load.
 You can add data by logging in with the heroku superuser you created
 You can now use this deployed version as your backend API
