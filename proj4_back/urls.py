@@ -20,4 +20,5 @@ from django.conf.urls import include # add this
 urlpatterns = [
     path('', include('connect4.urls')), # add this
     path('admin/', admin.site.urls),
+    path('', include('.asgi'))
 ]
