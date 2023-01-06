@@ -33,7 +33,7 @@ application = ProtocolTypeRouter({
     ])
 ),
 })
-
+# notes for local test
 # ws://connect4back.herokuapp.com/ws/subscribe/
 # {"type": "subscribe",
 #   "id": 1337,
