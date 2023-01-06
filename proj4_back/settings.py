@@ -89,7 +89,7 @@ CHANNEL_LAYERS = {
         "CONFIG": {
             "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
         },
-        "ROUTING": "proj4_back.routing.channel_routing",
+        "ROUTING": "proj4_back.asgi.URLRouter",
     },
 }
 # Database
