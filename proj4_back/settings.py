@@ -65,7 +65,7 @@ CORS_ALLOW_ALL_ORIGINS = True # add this
 
 ROOT_URLCONF = 'proj4_back.urls'
 ASGI_APPLICATION = "proj4_back.asgi.application"
-# WSGI_APPLICATION = 'proj4_back.wsgi.application'
+WSGI_APPLICATION = 'proj4_back.wsgi.application'
 
 TEMPLATES = [
     {

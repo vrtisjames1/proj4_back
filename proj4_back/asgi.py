@@ -30,8 +30,6 @@ application = ProtocolTypeRouter({
     "websocket": AuthMiddlewareStack(
     URLRouter([
         path("ws/subscribe/", router.as_consumer().as_asgi(), name="subscriptions"),
-        path('', include('connect4.urls')), # add this
-        path('admin/', admin.site.urls),
     ])
 ),
 })
