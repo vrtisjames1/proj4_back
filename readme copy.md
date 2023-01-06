@@ -72,8 +72,8 @@ python manage.py shell
 
 ## Once it's started, we can write python to play around with the models. In the shell runt he following to add data:
 
-from contacts_api.models import Contact
-Contact.objects.all() # get all the contacts in the db
+from connect4.models import Connect4
+Connect4.objects.all() # get all the contacts in the db
 c = Contact(name="Matt", age=40) # create a new contact.  Note this isn't yet in the db
 c.save() # save the contact to the db
 c.id # check the id to make sure it's in the db

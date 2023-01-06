@@ -12,12 +12,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os # add this
-
+# import django
+# django.setup()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # edit this var
-
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -35,9 +34,12 @@ ALLOWED_HOSTS = ['localhost', 'connect4back.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    # 'daphne',
+    'channels',
     'corsheaders', # add this
     'rest_framework',  # add this
     'connect4',
+    'rest_live',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,6 +65,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 CORS_ALLOW_ALL_ORIGINS = True # add this
 
 ROOT_URLCONF = 'proj4_back.urls'
+ASGI_APPLICATION = "proj4_back.asgi.application"
+WSGI_APPLICATION = 'proj4_back.wsgi.application'
 
 TEMPLATES = [
     {
@@ -80,8 +84,14 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'proj4_back.wsgi.application'
-
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -129,7 +139,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
