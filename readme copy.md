@@ -205,3 +205,104 @@ CORS_ALLOW_ALL_ORIGINS = True # add this
 GET LINK
 HEADERS>>
 ORIGIN
+
+## Deploy to heroku
+NOTE: Run these commands in the root of your django project
+
+### Create a heroku app from the root of your project folder, 
+run: "heroku create" in the terminal. 
+
+The command will randomly generate a name for you, if you want to name your app something specific run: "heroku create urlNameYouWantHere".
+
+### Copy the heroku url that was created (without the https://), go to your django_rest_api/settings.py and add it into the ALLOWED_HOSTS
+
+ALLOWED_HOSTS = ['localhost', 'agile-earth-74098.herokuapp.com']
+Add dj_database_url so that production will get the database info from environment variables:
+
+### python -m pip install dj_database_url
+At the top of django_rest_api/settings.py add import dj_database_url:
+
+### from pathlib import Path:
+import dj_database_url # add this
+Further down django_rest_api/settings.py make the following change:
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django_contacts',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': 'localhost'
+    }
+}
+
+db_from_env = dj_database_url.config(conn_max_age=600) # add this
+DATABASES['default'].update(db_from_env) # add this
+
+### We need to set up static files correctly for heroku. Edit django_rest_api/settings.py at the top to import os:
+
+from pathlib import Path
+import dj_database_url
+import os # add this
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # edit this var
+
+### and now edit the bottom of the same file:
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # add this
+Install whitenoise to help with static files
+
+python -m pip install whitenoise
+
+### Edit django_rest_api/settings.py to include whitenoise
+
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # add this
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # add this
+Now install gunicorn which will serve your django code
+
+python -m pip install gunicorn
+### create Procfile and add
+
+web: gunicorn django_rest_api.wsgi
+
+(This will tell heroku how to serve your app)
+
+### Now run the following to create a dependencies list for heroku:
+
+python -m pip freeze > requirements.txt
+### On the Browser
+### Go to your heroku dashboard for the heroku project you just created
+### Click on Configure Add-Ons
+Search for Heroku Postgres and add it
+
+### In Terminal
+git add -A
+git commit -m "heroku deployment"
+git push heroku master
+### Once it builds successfully, run heroku run bash
+### While in heroku bash, apply the migrations to the heroku project by running: 
+python manage.py migrate
+### Still in heroku bash, create a superuser for the heroku project by running 
+python manage.py createsuperuser 
+### and follow the prompts
+### To exit heroku bash, run:
+ exit
+
+In Browser
+
+### After the migrations finish, you should now be able to open the heroku app in your browser to see the Django REST interface!
+### Don't forget to go to /api/contacts
+Remember that your heroku database is separate from your local database, so there should not be any data on the first load.
+You can add data by logging in with the heroku superuser you created
+You can now use this deployed version as your backend API
