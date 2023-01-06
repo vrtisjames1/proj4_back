@@ -24,7 +24,6 @@ from connect4.views import Connect4List
 # Initialize Django ASGI application early to ensure the AppRegistry
 # is populated before importing code that may import ORM models.
 
-
 router = RealtimeRouter()
 router.register(Connect4List)
 
