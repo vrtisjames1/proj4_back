@@ -5,7 +5,7 @@
 ## START UP
 new directory tab: 
 source ~/ga-env/bin/activate
-
+daphne proj4_back.asgi:application
 python -m pip install Django
 
 ## must be in directory for this command: 
