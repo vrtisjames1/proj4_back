@@ -20,7 +20,6 @@ from channels.auth import AuthMiddlewareStack
 from django.urls import path
 from rest_live.routers import RealtimeRouter
 from connect4.views import Connect4List
-
 # Initialize Django ASGI application early to ensure the AppRegistry
 # is populated before importing code that may import ORM models.
 router = RealtimeRouter()
