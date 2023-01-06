@@ -33,3 +33,9 @@ application = ProtocolTypeRouter({
     ])
 ),
 })
+
+# ws://connect4back.herokuapp.com/ws/subscribe/
+# {"type": "subscribe",
+#   "id": 1337,
+#   "model": "connect4.Connect4",
+#   "action": "list"}
