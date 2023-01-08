@@ -5,7 +5,12 @@
 ## START UP
 new directory tab: 
 source ~/ga-env/bin/activate
+
+## web socket
+redis-server
 daphne proj4_back.asgi:application
+### postman
+ws://127.0.0.1:8000/ws/api
 python -m pip install Django
 
 ## must be in directory for this command: 

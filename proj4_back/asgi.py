@@ -29,7 +29,7 @@ application = ProtocolTypeRouter({
     "http": get_asgi_application(),
     "websocket": AuthMiddlewareStack(
     URLRouter([
-        path("api/connect4", router.as_consumer().as_asgi(), name="subscriptions"),
+        path("ws/api", router.as_consumer().as_asgi(), name="subscriptions"),
     ])
 ),
 })

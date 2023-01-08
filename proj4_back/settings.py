@@ -33,7 +33,7 @@ ALLOWED_HOSTS = ['localhost', 'connect4back.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
-    # 'daphne',
+    'daphne',
     'channels',
     'corsheaders', # add this
     'rest_framework',  # add this
@@ -64,7 +64,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 CORS_ALLOW_ALL_ORIGINS = True # add this
 
 ROOT_URLCONF = 'proj4_back.urls'
-ASGI_APPLICATION = "proj4_back.asgi.application"
+ASGI_APPLICATION = 'proj4_back.asgi.application'
 WSGI_APPLICATION = 'proj4_back.wsgi.application'
 
 TEMPLATES = [
