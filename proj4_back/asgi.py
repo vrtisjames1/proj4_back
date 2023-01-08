@@ -29,9 +29,8 @@ application = ProtocolTypeRouter({
     "http": get_asgi_application(),
     "websocket": AuthMiddlewareStack(
     URLRouter([
-        path("ws/api", router.as_consumer().as_asgi(), name="subscriptions"),
-    ])
-),
+        path("ws/api", router.as_consumer().as_asgi(), name="subscriptions")
+])),
 })
 # notes for local test
 # ws://connect4back.herokuapp.com/ws/subscribe/
