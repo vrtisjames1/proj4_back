@@ -10,6 +10,7 @@ class Connect4List(generics.ListCreateAPIView, RealtimeMixin):
     queryset = Connect4.objects.all().order_by('id') # tell django how to retrieve all objects from the DB, order by id ascending
     serializer_class = Connect4Serializer # tell django what serializer to use
 
+    # websocket view
     def get_queryset(self):  # Actual queryset for the view
         return Connect4.objects
 
